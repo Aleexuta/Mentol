@@ -4,14 +4,15 @@ import colors1 from '../colors/colors';
 import NotesItem from '../elements/NotesItem';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import {listNotes} from '../Database/SQLiteScreen ';
 
 const NotesWindows = ({navigation}) => {
   const items = [1, 2, 3];
   return (
     <View style={styles.implicit}>
       <View style={styles.topbar}>
-        <Pressable>
-          <Icon name={'plus'} color="black" size={30} />
+        <Pressable onPress={() => navigation.push('AddNote')}>
+          <Icon name={'plus'} color="black" size={30} brand />
         </Pressable>
       </View>
       <FlatList

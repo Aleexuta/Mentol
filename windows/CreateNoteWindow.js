@@ -3,12 +3,25 @@ import {StyleSheet, View, Text} from 'react-native';
 import colors1 from '../colors/colors';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {Button} from 'react-native-elements';
+import {createNote} from '../Database/SQLiteScreen ';
 const CreateNoteWindow = ({navigation}) => {
   return (
     <View style={styles.implicit}>
-      <View>
-        <Pressable onPress={navigation.pop()}>
-          <Icon name={'back'} size={30} color="black" />
+      <View style={styles.buttonPart}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            navigation.pop();
+          }}>
+          <Icon name={'arrow-left'} color="black" size={30} />
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            createNote('texxxxt', '13-12-2000');
+          }}>
+          <Icon name={'check'} color="black" size={30} />
         </Pressable>
       </View>
       <View>
@@ -28,11 +41,17 @@ const styles = StyleSheet.create({
   },
   buttonPart: {
     flex: 0.2,
+    margin: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   textPart: {
     flex: 0.8,
     margin: 10,
     backgroundColor: colors1.COLOR_item,
+  },
+  button: {
+    margin: 10,
   },
 });
 

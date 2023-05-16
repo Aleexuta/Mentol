@@ -21,32 +21,35 @@ import MenuWindow from './windows/MenuWindow';
 
 import SQLite from 'react-native-sqlite-storage';
 import CreateNoteWindow from './windows/CreateNoteWindow';
-
-global.db = SQLite.openDatabase(
-  {
-    name: 'SQLite',
-    location: 'default',
-    createFromLocation: '~SQLite.db',
-  },
-  () => {},
-  error => {
-    console.log('ERROR: ' + error);
-  },
-);
-
+import {createNoteTable} from './Database/SQLiteScreen ';
 const Tab = createBottomTabNavigator();
 
-// const NoteStack = createStackNavigator();
-// const NotesNavigator = () => {
-//   return (
-//     <NoteStack.Navigator>
-//       <NoteStack.Screen name="Notes" component={NotesWindows} />
-//       <NoteStack.Screen name="AddNote" component={CreateNoteWindow} />
-//     </NoteStack.Navigator>
-//   );
-// };
+const NoteStack = createStackNavigator();
+const NotesNavigator = () => {
+  return (
+    <NoteStack.Navigator>
+      <NoteStack.Screen
+        name="NotesList"
+        options={{
+          headerShown: false,
+        }}
+        component={NotesWindows}
+      />
+      <NoteStack.Screen
+        name="AddNote"
+        options={{
+          headerShown: false,
+        }}
+        component={CreateNoteWindow}
+      />
+    </NoteStack.Navigator>
+  );
+};
 
 const App = () => {
+  React.useEffect(() => {
+    createNoteTable();
+  });
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -89,7 +92,7 @@ const App = () => {
 
         <Tab.Screen
           name="Notes"
-          component={NotesWindows}
+          component={NotesNavigator}
           options={{
             headerShown: false,
             tabBarItemStyle: {
