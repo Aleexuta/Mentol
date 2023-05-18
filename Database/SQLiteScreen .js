@@ -38,21 +38,32 @@ const createNote = (text, date) => {
   );
 };
 //list all the notes
-const listNotes = async () => {
-  let sql = 'SELECT * FROM notes';
-  db.transaction(tx => {
-    tx.executeSql(
-      sql,
-      [],
-      (tx, resultSet) => {
-        var length = resultSet.rows.length;
-        for (var i = 0; i < length; i++) {
-          console.log(resultSet.rows.item(i));
-        }
+const listNotes = () => {
+  return new Promise((resolve, reject) => {
+    let sql = 'SELECT * FROM notes';
+    db.transaction(
+      tx => {
+        tx.executeSql(
+          sql,
+          [],
+          (_, resultSet) => {
+            var length = resultSet.rows.length;
+            var tempData = [];
+            for (var i = 0; i < length; i++) {
+              tempData.push(resultSet.rows.item(i));
+            }
+            resolve(tempData);
+          },
+          error => {
+            console.log('List notes error', error);
+            reject([]);
+          },
+        );
       },
       error => {
-        console.log('List user error', error);
-      },
+        console.log('Transaction error', error);
+        reject([]);
+      }
     );
   });
 };

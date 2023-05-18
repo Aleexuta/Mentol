@@ -53,11 +53,14 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
+        initialRouteName="Notes"
         screenOptions={({route}) => ({
           tabBarInactiveTintColor: 'black',
           tabBarActiveTintColor: '#FFD469',
           tabBarStyle: {
-            backgroundColor: colors1.COLOR_background,
+            backgroundColor: 'transparent',
+            borderTopWidth: 0,
+            position: 'absolute',
           },
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
@@ -80,7 +83,7 @@ const App = () => {
             tabBarItemStyle: {
               backgroundColor: colors1.COLOR_navbar,
               borderTopRightRadius: 100,
-              bottom: 20,
+              bottom: 30,
               paddingBottom: 40,
               paddingTop: 20,
               height: 100,
@@ -99,7 +102,7 @@ const App = () => {
               backgroundColor: colors1.COLOR_navbar,
               borderTopRightRadius: 100,
               borderTopLeftRadius: 100,
-              bottom: 20,
+              bottom: 30,
               paddingBottom: 40,
               paddingTop: 20,
               height: 100,
@@ -117,7 +120,7 @@ const App = () => {
             tabBarItemStyle: {
               backgroundColor: colors1.COLOR_navbar,
               borderTopLeftRadius: 100,
-              bottom: 20,
+              bottom: 30,
               paddingBottom: 40,
               paddingTop: 20,
               height: 100,

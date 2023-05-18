@@ -2,13 +2,14 @@ import * as React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import colors1 from '../colors/colors';
 
-const NotesItem = () => {
+const NotesItem = props => {
+  console.log(props);
   return (
     <View style={styles.completView}>
       <View style={styles.coloredPart}>
-        <Text style={styles.textNote}></Text>
+        <Text style={styles.textNote}>{props.props.note}</Text>
       </View>
-      <Text style={styles.textData}>Data</Text>
+      <Text style={styles.textData}>{props.props.date}</Text>
     </View>
   );
 };
