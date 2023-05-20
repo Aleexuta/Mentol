@@ -51,7 +51,9 @@ const NotesWindows = ({navigation}) => {
         style={{margin: 5}}
         data={data}
         numColumns={2}
-        renderItem={({item}) => <NotesItem props={item} />}
+        renderItem={({item}) => (
+          <NotesItem props={item} navigation={navigation} />
+        )}
         keyExtractor={item => item.id}
       />
     </View>

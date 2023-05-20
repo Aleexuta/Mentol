@@ -63,7 +63,7 @@ const listNotes = () => {
       error => {
         console.log('Transaction error', error);
         reject([]);
-      }
+      },
     );
   });
 };
@@ -85,9 +85,9 @@ const updateNote = (note, date, id) => {
 };
 
 //delete note record
-const deleteNote = () => {
-  let sql = 'DELETE FROM note WHERE id = ?';
-  let params = [1];
+const deleteNote = id => {
+  let sql = 'DELETE FROM notes WHERE id = ?';
+  let params = [id];
   db.executeSql(
     sql,
     params,

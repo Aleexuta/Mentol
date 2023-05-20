@@ -1,14 +1,19 @@
 import * as React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import colors1 from '../colors/colors';
 
-const NotesItem = props => {
-  console.log(props);
+const NotesItem = (props, navigation) => {
   return (
     <View style={styles.completView}>
-      <View style={styles.coloredPart}>
-        <Text style={styles.textNote}>{props.props.note}</Text>
-      </View>
+      <Pressable
+        onPress={() => {
+          console.log(props.navigation);
+          props.navigation.push('EditNote', {props: props.props});
+        }}>
+        <View style={styles.coloredPart}>
+          <Text style={styles.textNote}>{props.props.note}</Text>
+        </View>
+      </Pressable>
       <Text style={styles.textData}>{props.props.date}</Text>
     </View>
   );

@@ -22,6 +22,7 @@ import MenuWindow from './windows/MenuWindow';
 import SQLite from 'react-native-sqlite-storage';
 import CreateNoteWindow from './windows/CreateNoteWindow';
 import {createNoteTable} from './Database/SQLiteScreen ';
+import EditWindow from './windows/EditWindow';
 const Tab = createBottomTabNavigator();
 
 const NoteStack = createStackNavigator();
@@ -42,6 +43,13 @@ const NotesNavigator = () => {
         }}
         component={CreateNoteWindow}
       />
+      <NoteStack.Screen
+        name="EditNote"
+        options={{
+          headerShown: false,
+        }}
+        component={EditWindow}
+      />
     </NoteStack.Navigator>
   );
 };
@@ -55,6 +63,7 @@ const App = () => {
       <Tab.Navigator
         initialRouteName="Notes"
         screenOptions={({route}) => ({
+          tabBarHideOnKeyboard: true,
           tabBarInactiveTintColor: 'black',
           tabBarActiveTintColor: '#FFD469',
           tabBarStyle: {
@@ -76,8 +85,8 @@ const App = () => {
           },
         })}>
         <Tab.Screen
-          name="Statistics"
-          component={StatisticsWindows}
+          name="Menu"
+          component={MenuWindow}
           options={{
             headerShown: false,
             tabBarItemStyle: {
@@ -113,8 +122,8 @@ const App = () => {
           }}
         />
         <Tab.Screen
-          name="Menu"
-          component={MenuWindow}
+          name="Statistics"
+          component={StatisticsWindows}
           options={{
             headerShown: false,
             tabBarItemStyle: {
