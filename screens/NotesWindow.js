@@ -6,6 +6,10 @@ import NotesItem from '../elements/NotesItem';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {listNotes} from '../Database/SQLiteScreen ';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2fd392f862217c2a75c1dd70af962b0afb9adbde
 const NotesWindows = ({navigation}) => {
     const [data, setData] = React.useState([]);
   
@@ -47,7 +51,11 @@ const NotesWindows = ({navigation}) => {
           </Pressable>
         </View>
         <FlatList
+<<<<<<< HEAD
           style={{margin: 5,marginBottom:60}}
+=======
+          style={{margin: 5}}
+>>>>>>> 2fd392f862217c2a75c1dd70af962b0afb9adbde
           data={data}
           numColumns={2}
           renderItem={({item}) => (

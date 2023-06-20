@@ -17,7 +17,10 @@
     "@tensorflow-models/pose-detection": "2.0.0",
     "@tensorflow/tfjs": "3.18.0",
     "@tensorflow/tfjs-react-native": "0.8.0",
+<<<<<<< HEAD
     "axios": "^1.4.0",
+=======
+>>>>>>> 2fd392f862217c2a75c1dd70af962b0afb9adbde
     "expo": "~46.0.2",
     "expo-camera": "^12.3.0",
     "expo-file-system": "^14.1.0",
@@ -40,7 +43,10 @@
     "react-native-sqlite-storage": "^6.0.1",
     "react-native-svg": "9.13.3",
     "react-toast-notifier": "^1.0.3",
+<<<<<<< HEAD
     "tokenizr": "^1.6.9",
+=======
+>>>>>>> 2fd392f862217c2a75c1dd70af962b0afb9adbde
     "victory-native": "^36.6.10"
   },
   "devDependencies": {
