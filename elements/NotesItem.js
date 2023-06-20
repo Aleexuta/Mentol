@@ -7,7 +7,7 @@ const NotesItem = (props, navigation) => {
     <View style={styles.completView}>
       <Pressable
         onPress={() => {
-          console.log(props.navigation);
+          // console.log(props.navigation);
           props.navigation.push('EditNote', {props: props.props});
         }}>
         <View style={styles.coloredPart}>
