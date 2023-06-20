@@ -12,33 +12,8 @@ import { Alert } from "react-native";
 //   error => console.log('Database error', error), //on error
 // );
 const db = SQLite.openDatabase("myDB");
-import React from "react";
-import * as SQLite from "expo-sqlite";
-import { Alert } from "react-native";
-// const db = SQLite.openDatabase(
-//   {
-//     name: 'mydb',
-//     location: 'default',
-//   },
-//   () => {
-//     console.log('Database connected!');
-//   }, //on success
-//   error => console.log('Database error', error), //on error
-// );
-const db = SQLite.openDatabase("myDB");
 
 const createNoteTable = () => {
-  db.transaction((tx) =>
-    tx.executeSql(
-      "CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT, note VARCHAR, date VARCHAR, result VARCHAR)",
-      [],
-      (result) => {
-        console.log("Table created successfully");
-      },
-      (error) => {
-        console.log("Create table error", error);
-      }
-    )
   db.transaction((tx) =>
     tx.executeSql(
       "CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT, note VARCHAR, date VARCHAR, result VARCHAR)",
@@ -72,9 +47,7 @@ const createNote = (text, date,res) => {
 const listNotes = () => {
   return new Promise((resolve, reject) => {
     let sql = "SELECT * FROM notes";
-    let sql = "SELECT * FROM notes";
     db.transaction(
-      (tx) => {
       (tx) => {
         tx.executeSql(
           sql,
@@ -90,19 +63,13 @@ const listNotes = () => {
           },
           (error) => {
             console.log("List notes error", error);
-          (error) => {
-            console.log("List notes error", error);
             reject([]);
-          }
           }
         );
       },
       (error) => {
         console.log("Transaction error", error);
-      (error) => {
-        console.log("Transaction error", error);
         reject([]);
-      }
       }
     );
   });
@@ -111,19 +78,7 @@ const listNotes = () => {
 //update note record
 const updateNote = (note, date, id) => {
   let sql = "UPDATE notes SET note = ?, date = ? WHERE id = ?";
-  let sql = "UPDATE notes SET note = ?, date = ? WHERE id = ?";
   let params = [note, date, id];
-  db.transaction((tx) =>
-    tx.executeSql(
-      sql,
-      params,
-      (resultSet) => {
-        Alert.alert("Success", "Record updated successfully");
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
   db.transaction((tx) =>
     tx.executeSql(
       sql,
@@ -141,20 +96,7 @@ const updateNote = (note, date, id) => {
 //delete note record
 const deleteNote = (id) => {
   let sql = "DELETE FROM notes WHERE id = ?";
-const deleteNote = (id) => {
-  let sql = "DELETE FROM notes WHERE id = ?";
   let params = [id];
-  db.transaction((tx) =>
-    tx.executeSql(
-      sql,
-      params,
-      (resultSet) => {
-        Alert.alert("Success", "Note deleted successfully");
-      },
-      (error) => {
-        console.log("Delete note error", error);
-      }
-    )
   db.transaction((tx) =>
     tx.executeSql(
       sql,
@@ -172,20 +114,15 @@ const deleteNote = (id) => {
 //update note record
 const setResultNote = (result, id) => {
   let sql = "UPDATE notes SET reslt = ? WHERE id = ?";
-  let sql = "UPDATE notes SET reslt = ? WHERE id = ?";
   let params = [result, id];
   db.executeSql(
     sql,
     params,
     (resultSet) => {
       Alert.alert("Success", "Record updated successfully");
-    (resultSet) => {
-      Alert.alert("Success", "Record updated successfully");
     },
     (error) => {
-    (error) => {
       console.log(error);
-    }
     }
   );
 };
