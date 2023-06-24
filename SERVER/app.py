@@ -5,8 +5,48 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from transformers import BertTokenizer,TFBertForSequenceClassification
 import json
 import numpy as np
+import re 
+import string
+import nltk
+from nltk import  word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+
 
 app = Flask(__name__)  # Setup the flask app by creating an instance of 
+
+
+def convert_lowercase(text):
+    text = text.lower()
+    return text
+def remove_url(text):
+    re_url = re.compile('https?://\S+|www\.\S+')
+    return re_url.sub('', text)
+exclude = string.punctuation
+
+def remove_punc(text):
+    return text.translate(str.maketrans('', '', exclude))
+def remove_stopwords(text):
+    new_list = []
+    words = word_tokenize(text)
+    stopwrds = stopwords.words('english')
+    for word in words:
+        if word not in stopwrds:
+            new_list.append(word)
+    return ' '.join(new_list)
+def lemmatize_words(text):
+    lemmatizer = WordNetLemmatizer()
+    words = text.split()
+    words = [lemmatizer.lemmatize(word,pos='v') for word in words]
+    return ' '.join(words)
+def preprocessed(text):
+    text = convert_lowercase(text)
+    text = remove_url(text)
+    text = remove_punc(text)
+    text = remove_stopwords(text)
+    # text = lemmatize_words(text)
+    return text
 
 vocab_size=5000
 oov_tok = '<OOV>'
@@ -35,6 +75,7 @@ def predict():
         json_object = json.loads(data)
         text=json_object['textToPredict']
 
+        text=preprocessed(text)
         
         sequences = tokenizerBinar.texts_to_sequences([text])
         padded_sequences = pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH,
