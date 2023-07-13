@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getPredictions = text => {
   return new Promise((resolve, reject) => {
     axios
-      .post('http://10.10.20.66:5000/predict', {
+      .post('http://192.168.147.1:5000/predict', {
         textToPredict: text,
       })
       .then(function (response) {

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
-import React, {useState} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import NotesWindow from './screens/NotesWindow';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';

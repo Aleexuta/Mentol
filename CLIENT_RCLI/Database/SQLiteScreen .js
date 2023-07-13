@@ -50,7 +50,7 @@ const listNotes = () => {
               tempData.push(resultSet.rows.item(i));
             }
             console.log(tempData);
-            resolve(tempData);
+            resolve(tempData.reverse());
           },
           error => {
             console.log('List notes error', error);

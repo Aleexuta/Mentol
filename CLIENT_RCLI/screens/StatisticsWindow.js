@@ -36,7 +36,6 @@ const transformData = inputData => {
         const label = classLabels[index];
         formattedProbabilities[label] = probability;
       });
-      console.log(new Date('2023-06-21T19:57:01.000Z'));
       return {
         date: addDays(new Date(date), id), // Convert date string to Date object
         probabilities: formattedProbabilities,
@@ -69,7 +68,6 @@ const StatisticsWindows = () => {
       console.error(error);
     }
   };
-  console.log(data);
   const labels = Object.keys(data[0]?.probabilities || {});
   const colors = [
     '#0000FF',
@@ -103,7 +101,6 @@ const StatisticsWindows = () => {
             style={{
               data: {stroke: colors[index]},
             }}
-            labels={() => ''}
           />
         ))}
       </VictoryChart>

@@ -39,14 +39,7 @@ const EditWindow = props => {
 
     setShowBox(false);
   };
-  React.useEffect(() => {
-    // Add event listener for hardware back button press on Android
-    BackHandler.addEventListener('hardwareBackPress', backActionHandler);
 
-    return () =>
-      // clear/remove event listener
-      BackHandler.removeEventListener('hardwareBackPress', backActionHandler);
-  }, []);
   const handlePredictions = async note => {
     ToastAndroid.showWithGravity(
       'The result is loading...',
@@ -129,6 +122,7 @@ const EditWindow = props => {
               />
               <Menu.Item
                 onPress={() => {
+                  closeMenu();
                   props.navigation.push(
                     'Result',
                     (props = props.route.params.props),

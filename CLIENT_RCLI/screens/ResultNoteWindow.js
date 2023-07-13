@@ -38,10 +38,10 @@ const ResultNoteWindow = props => {
   console.log(binarClassData);
   console.log(multiClassData);
   const data = [
-    {x: 'Suffer from mental conditions', y: binarClassData[0].toFixed(2)},
+    {x: 'Suffer from mental conditions', y: binarClassData[0]},
     {
       x: 'Does not suffer from mental conditions',
-      y: binarClassData[1].toFixed(2),
+      y: binarClassData[1],
     },
   ];
 
@@ -105,7 +105,8 @@ const ResultNoteWindow = props => {
               <VictoryPie
                 data={data}
                 colorScale={colors}
-                labels={({datum}) => `${datum.y}%`}
+                labels={({datum}) => `${datum.y.toFixed(2)}%`}
+                height={350}
               />
             </View>
             <View>
