@@ -37,7 +37,7 @@ const transformData = inputData => {
         formattedProbabilities[label] = probability;
       });
       return {
-        date: addDays(new Date(date), id), // Convert date string to Date object
+        date: addDays(new Date(), id), // Convert date string to Date object
         probabilities: formattedProbabilities,
       };
     }
